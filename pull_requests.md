@@ -1,2 +1,3 @@
--Bruce Tate
+- Bruce Tate
+- Dragos Musetescu
 -Lambert Torres
