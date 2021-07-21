@@ -2,4 +2,5 @@
 - Dragos Musetescu
 - Lambert Torres
 - Alexa Hunleth
+- James Kienle
 - Juliana Helena
