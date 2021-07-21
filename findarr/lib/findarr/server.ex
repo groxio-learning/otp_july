@@ -19,8 +19,12 @@ defmodule Findarr.Server do
     GenServer.call(counter, :status)
   end
 
-  def start_link(initial) do
-    GenServer.start_link(__MODULE__, initial, name: __MODULE__)
+  def start_link({initial, name}) do
+    GenServer.start_link(__MODULE__, initial, name: name)
+  end
+
+  def child_spec({initial, name}) do
+    %{id: name, start: {Findarr.Server, :start_link, [{initial, name}]}}
   end
 
   def init(initial) do
