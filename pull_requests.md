@@ -2,3 +2,4 @@
 - Dragos Musetescu
 - Lambert Torres
 - Alexa Hunleth
+- James Kienle
