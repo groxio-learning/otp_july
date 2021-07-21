@@ -3,23 +3,28 @@ defmodule Findarr.Server do
 
   alias Findarr.Counter
 
-  def boom(counter) do
+  def boom(counter \\ __MODULE__) do
     send(counter, :boom)
   end
 
-  def dec(counter) do
+  def dec(counter \\ __MODULE__) do
     GenServer.cast(counter, :dec)
   end
 
-  def inc(counter) do
+  def inc(counter \\ __MODULE__) do
     GenServer.cast(counter, :inc)
   end
 
-  def status(counter) do
+  def status(counter \\ __MODULE__) do
     GenServer.call(counter, :status)
   end
 
+  def start_link(initial) do
+    GenServer.start_link(__MODULE__, initial, name: __MODULE__)
+  end
+
   def init(initial) do
+    IO.inspect("Starting with #{initial}")
     {:ok, Counter.new(initial)}
   end
 
