@@ -2,7 +2,9 @@ defmodule Findarr.Service do
   alias Findarr.Counter
 
   def start(raw_count) do
+    # constructor
     initial_count = Counter.new(raw_count)
+    # start server
     spawn(fn -> loop(initial_count) end)
   end
 
@@ -28,9 +30,11 @@ defmodule Findarr.Service do
     |> loop
   end
 
+  # input is server old state
   def listen(count) do
     receive do
       :inc ->
+        # output is new state
         Counter.inc(count)
 
       :dec ->
