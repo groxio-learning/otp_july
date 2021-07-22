@@ -1,12 +1,12 @@
 defmodule Mindmastarr.Board do
-  @test_solution [1, 6, 7, 3]
+  @random_solution Enum.take_random(1..8, 4)
 
   alias Mindmastarr.Score
 
-  defstruct guesses: [], solution: @test_solution
+  defstruct guesses: [], solution: []
 
-  def new() do
-    %__MODULE__{}
+  def new(answer \\ @random_solution) do
+    %__MODULE__{solution: answer}
   end
 
   def add_move(board, move) do
@@ -23,12 +23,11 @@ defmodule Mindmastarr.Board do
 
   def render_guesses(board) do
     Enum.map(board.guesses, &render_row(board.solution, &1))
+    |> Enum.join("\n")
   end
 
   def render_row(solution, [first, second, third, fourth] = guess) do
-    "[#{first}][#{second}][#{third}][#{fourth}] | #{
-      Score.new(guess, solution) |> Score.as_string()
-    }"
+    "[#{first}][#{second}][#{third}][#{fourth}] | #{Score.new(guess, solution) |> Score.as_string()}"
   end
 
   def render_status(board) do
