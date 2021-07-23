@@ -15,7 +15,8 @@ defmodule Mindmastarr.Server do
     %{id: name, start: {__MODULE__, :start_link, [name]}}
   end
 
-  def init(_name) do
+  def init(name) do
+    IO.puts("Starting game: #{name}...")
     {:ok, Board.new()}
   end
 
