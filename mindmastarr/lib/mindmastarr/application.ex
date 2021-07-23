@@ -8,20 +8,14 @@ defmodule Mindmastarr.Application do
   @impl true
   def start(_type, _args) do
     IO.puts("Starting application...")
+
     children = [
-      # Starts a worker by calling: Mindmastarr.Worker.start_link(arg)
-      # {Mindmastarr.Worker, arg}
-      {Mindmastarr.Server, :droopy},
-      {Mindmastarr.Server, :grommit},
-      {Mindmastarr.Server, :shaggy},
-      {Mindmastarr.Server, :ahsoka},
-      {Mindmastarr.Server, :naruto},
-      {Mindmastarr.Server, :wileycoyote}
+      {DynamicSupervisor, strategy: :one_for_one, name: Mindmastarr.DynamicSupervisarr}
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html
     # for other strategies and supported options
-    opts = [strategy: :rest_for_one, name: Mindmastarr.Supervisor]
+    opts = [strategy: :one_for_one, name: Mindmastarr.Supervisarr]
     Supervisor.start_link(children, opts)
   end
 end
