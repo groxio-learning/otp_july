@@ -11,6 +11,10 @@ defmodule Mindmastarr.Server do
     GenServer.start_link(__MODULE__, name, name: name)
   end
 
+  def child_spec(name) do
+    %{id: name, start: {__MODULE__, :start_link, [name]}}
+  end
+
   def init(_name) do
     {:ok, Board.new()}
   end

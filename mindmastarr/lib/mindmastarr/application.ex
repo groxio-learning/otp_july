@@ -10,6 +10,8 @@ defmodule Mindmastarr.Application do
     children = [
       # Starts a worker by calling: Mindmastarr.Worker.start_link(arg)
       # {Mindmastarr.Worker, arg}
+      {Mindmastarr.Server, :droopy},
+      {Mindmastarr.Server, :grommit}
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html
